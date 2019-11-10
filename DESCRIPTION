@@ -1,0 +1,12 @@
+Title: Optimización de línea hecho en R y Shiny
+Authors@R: c(
+    person("Roberto Fabián", "Escobar Santander", role = "Autor", email = "hdmsantander@gmail.com"),
+    person("Carlos Adrián", "Escobar Santander", role = "Autor")
+    )
+AuthorUrl: https://gitlab.com/hdmsantander/busquedadelinea
+License: GPL-3
+DisplayMode: Normal
+Tags: Optimizacion Búsqueda
+Encoding: UTF-8
+Version: 1.0.0
+Type: Shiny
