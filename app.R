@@ -164,10 +164,12 @@ contorno <- plot_ly(x = boundx, y = boundy, z = zet,source = "contorno") %>%
    add_trace(autocontour=TRUE,contours = list(coloring="heatmap"),
              line = list(color = "#ffffff"),type = "contour",
              colorbar = list(thickness=10,len = 1,tickfont = list(size = 8))) %>% 
-   layout(title = list(text="Contornos de superficie", font = list(size=12)), paper_bgcolor= "#E8E8E8", plot_bgcolor= "#E8E8E8",autosize = TRUE,yaxis = list(scaleanchor = "x", scaleratio = 1,tickfont = list(size = 8)),
-          margin = list(l =50,r = 50, t = 50 , b = 50 ,pad = 0),
-          xaxis = list(tickfont = list(size = 8),clickmode = "event")) %>%
-   config(displayModeBar = F)
+             layout(title = list(text="Contornos de superficie", font = list(size=12)),
+             paper_bgcolor= "#E8E8E8", plot_bgcolor= "#E8E8E8",autosize = TRUE,yaxis = list(scaleanchor = "x",
+             scaleratio = 1,tickfont = list(size = 8)),
+             margin = list(l =50,r = 50, t = 50 , b = 50 ,pad = 0),
+             xaxis = list(tickfont = list(size = 8),clickmode = "event")) %>%
+             config(displayModeBar = F)
 
 ## Generando la superficie
 superficie <- plot_ly(x=boundx,y=boundy,z = zet,type = "surface",height = 600, width = 600,colorbar=list(thickness=13,len=1,tickfont=list(size=10)))%>% add_trace(
@@ -194,7 +196,7 @@ superficie <- plot_ly(x=boundx,y=boundy,z = zet,type = "surface",height = 600, w
 
 
 
-# Define UI for application that draws a histogram
+# Definiendo la interfaz de usuario
 ui <- fluidPage(
    titlePanel("Búsquedas de línea"),
    
@@ -234,18 +236,20 @@ ui <- fluidPage(
    
 )
 
-# Definimos la lógica del servidor para hacer el algoritmo y el plot de la gráfica
+# Definimos la lógica del servidor para hacer el algoritmo y la actualización de la gráfica
 server <- function(input, output,session) {
    
    options(warn = -1)
    
    resultados <- NULL
    
+   # Atrapando algunos valores de las entradas para usarlos
    numIteraciones <- reactive({input$numIteraciones})
    valorEpsilon <- reactive({input$valorEpsilon})
    numResultados <- reactive({input$numResultados})
    point <- c(1,2)
    
+   # Eventos que tienen que ver con el contorno
    output$plotContorno <- renderPlotly({
       event <- event_data("plotly_click",source = "contorno")
       if(is.null(event)==FALSE){
@@ -259,6 +263,7 @@ server <- function(input, output,session) {
          add_trace(x=point[1], y=point[2], type="scatter", mode="markers", name="Punto inicial",marker=list(color="#f50505"))
    })
    
+   # Eventos que tienen que ver con la superficie
    output$plotSuperficie <- renderPlotly({
       numIteraciones <- isolate(numIteraciones())
       numResultados <- isolate(numResultados())
@@ -274,6 +279,7 @@ server <- function(input, output,session) {
                    line = list(width = 2,color = "#000000" ))
    })
    
+   # Actualización de la tabla de resultados
    output$tablaResultados = DT::renderDataTable({
       input$botonComenzarBusqueda
       
@@ -283,5 +289,5 @@ server <- function(input, output,session) {
    
 }
 
-# Run the application 
+# Ejecutando la aplicación 
 shinyApp(ui = ui, server = server)
