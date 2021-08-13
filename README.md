@@ -1,6 +1,17 @@
-# Ejemplo de aplicación web usando R y Shiny
-### Una implementación de un algoritmo de búsqueda de línea
+# shiny-line-search
+## Implementación en R de un algoritmo de búsqueda de línea
 
-El presente repositorio ejemplifica el uso de Shiny en Rstudio para implementar una aplicación web responsiva que sirve de front end para un algoritmo de búsqueda para una función de varias variables.
+El presente repositorio ejemplifica el uso de Shiny en Rstudio para implementar una aplicación web responsiva que sirve de front end para un algoritmo de búsqueda para una función multivariada.
 
-Se puede ver el código en ejemplo y su implementación en línea en [MatrixDS](https://community.platform.matrixds.com/hdmsantander/p5dc4b5f29550a31e).
+![Pantalla principal](./.images/main.png)
+
+La aplicación se puede configurar usando el panel lateral izquierdo:
+
+![Panel](./.images/config.png)
+
+Tras iniciar una ejecución usando el botón *Comenzar Búsqueda* se puede apreciar el recorrido realizado hasta alcanzar la precisión deseada en la gráfica:
+
+![Panel](./.images/zoom.png)
+
+Los resultados igual se presentan en una tabla
+![Panel](./.images/tabla.png)
