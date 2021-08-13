@@ -20,34 +20,8 @@ library(plotly)
 ## un punto.
 library(numDeriv)
 
-##########################################################################################
-# For deploying tools on MatrixDS, we created this production variable
-# when set to true, your shiny app will run on the shiny server tool upon clicking open
-# when set to false, your shiny app will run when you hit the "Run App" button on RStudio
-##########################################################################################
-
-production <- TRUE
-
-##########################################################################################
-# The shiny server tool uses a different absolute path than RStudio.
-# this if statement denotes the correct path for the 2 values of the production variable
-##########################################################################################
-
-if(production == FALSE) {
-   #if you using the RStudio tool
-   shiny_path <- "~/shiny-server/"
-   home_path <- "~/"
-} else {
-   #if you are using the shiny tool
-   shiny_path <- "/srv/shiny-server/"
-   home_path <- "/srv/"
-}
-
-##########################################################################################
-# To call a file/artifact in your MatrixDS project use the following line of code
-# this example uses the function read.csv
-#  my_csv <- read.csv(paste0(home_path,"file_name.csv"))
-##########################################################################################
+shiny_path <- "~/shiny-server/"
+home_path <- "~/"
 
 options(digits=7)
 
@@ -285,7 +259,6 @@ server <- function(input, output,session) {
       
       format(resultados,10)
    })
-   
    
 }
 
